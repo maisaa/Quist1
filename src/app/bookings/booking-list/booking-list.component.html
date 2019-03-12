@@ -1,0 +1,94 @@
+<table class="table table-sm table-hover">
+  <tr *ngFor="let booking of bookingService.bookingList">
+    <td>{{booking.name}}</td>
+    <td>{{booking.mobile}}</td>
+    <td>{{booking.email}}</td>
+    <td>
+      <a class="btn" (click)="showForEdit(booking)" data-toggle="modal" data-target="#myModal">
+        Edit
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
+    </td>
+    <td>
+      <a class="btn" (click)="showForEdit(booking)" data-toggle="modal" data-target="#DetailsModal">
+        Details
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
+    </td>
+    <td>
+      <a class="btn text-danger" (click)="onDelete(booking.bookingId)">
+        Delete
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal Edit-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"> Edit {{book.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <form class="emp-form" #updateForm="ngForm" (ngSubmit)="updat(updateForm)">
+
+          <input name="Name" #Name="ngModel" [(ngModel)]="book.name" value="{{book.name}}" disabled selected>
+          <input name="Mobile" #Mobile="ngModel" [(ngModel)]="book.mobile" value="{{book.mobile}}" disabled selected>
+          <input name="Email" #Email="ngModel" [(ngModel)]="book.email" value="{{book.email}}" disabled selected>
+          <input type="text" value="{{book.treatmentId}}" name="TreatmentId" #TreatmentId="ngModel" [(ngModel)]="book.treatmentId">
+          <br>
+          <input type="text" value="{{book.timeSlotId}}" name="TimeSlotId" #TimeSlotId="ngModel" [(ngModel)]="book.timeSlotId" >
+          <br>
+          <input type="text" value="{{book.note}}" name="Note" #Note="ngModel" [(ngModel)]="book.note">
+          <br>
+          <input type="date" value="{{book.bookedDate}}" type="date" name="BookedDate" #BookedDate="ngModel" [(ngModel)]="book.bookedDate">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-default"  data-dismiss="modal">update</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="DetailsModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal Details-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"> Details {{book.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label>Name :</label>{{book.name}}</div>
+        <div>
+          <label>Mobile :</label> {{book.mobile}}</div>
+        <div>
+          <label>Email :</label> {{book.email}}</div>
+        <div>
+          <label>TreatmentId :</label>{{book.treatmentId}}</div>
+        <div>
+          <label>TimeSlotId :</label>{{book.timeSlotId}}</div>
+        <div>
+          <label>Note :</label>{{book.note}}</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
